@@ -28,39 +28,18 @@ RSpec.describe 'fight index spec' do
     expect(page).to have_content(@flight1.number)
     expect(page).to have_content(@flight2.number)
 
-    within("#flight-#{@flight1.id}") do
     expect(page).to have_content("South West")
-
-    expect(page).to_not have_content("United Airlines")
-    end
-
-    within("#flight-#{@flight2.id}") do
     expect(page).to have_content("United Airlines")
-
-    expect(page).to_not have_content("South West")
+    save_and_open_page
     end
-  end
-
 
   it "it shows all passegner names of the flight" do
-    within("#flight-#{@flight1.id}") do
     expect(page).to have_content(@olivia.name)
     expect(page).to have_content(@mccall.name)
     expect(page).to have_content(@grinch.name)
 
-    expect(page).to_not have_content(@morgan.name)
-    expect(page).to_not have_content(@pete.name)
-    expect(page).to_not have_content(@parker.name)
-    end
-
-    within("#flight-#{@flight2.id}") do
     expect(page).to have_content(@morgan.name)
     expect(page).to have_content(@pete.name)
     expect(page).to have_content(@parker.name)
-
-    expect(page).to_not have_content(@olivia.name)
-    expect(page).to_not have_content(@mccall.name)
-    expect(page).to_not have_content(@grinch.name)
-    end
   end
 end
