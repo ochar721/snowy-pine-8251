@@ -23,11 +23,11 @@ ActiveRecord::Schema.define(version: 2021_04_23_141653) do
 
   create_table "flight_passengers", force: :cascade do |t|
     t.bigint "flight_id"
-    t.bigint "passengers_id"
+    t.bigint "passenger_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["flight_id"], name: "index_flight_passengers_on_flight_id"
-    t.index ["passengers_id"], name: "index_flight_passengers_on_passengers_id"
+    t.index ["passenger_id"], name: "index_flight_passengers_on_passenger_id"
   end
 
   create_table "flights", force: :cascade do |t|
@@ -45,6 +45,6 @@ ActiveRecord::Schema.define(version: 2021_04_23_141653) do
   end
 
   add_foreign_key "flight_passengers", "flights"
-  add_foreign_key "flight_passengers", "passengers", column: "passengers_id"
+  add_foreign_key "flight_passengers", "passengers"
   add_foreign_key "flights", "airlines"
 end
