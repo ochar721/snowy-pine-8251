@@ -30,8 +30,7 @@ RSpec.describe 'fight index spec' do
 
     expect(page).to have_content("South West")
     expect(page).to have_content("United Airlines")
-    save_and_open_page
-    end
+  end
 
   it "it shows all passegner names of the flight" do
     expect(page).to have_content(@olivia.name)
@@ -41,5 +40,12 @@ RSpec.describe 'fight index spec' do
     expect(page).to have_content(@morgan.name)
     expect(page).to have_content(@pete.name)
     expect(page).to have_content(@parker.name)
+  end
+
+  it "has a button to remove passengers" do
+    expect(@pete.name).to have_button("Remove Passenger")
+    click_button("Remove Passenger")
+    expect(current_path).to eq("/flights")
+    expect(page).to_not have_contenct(@pete.name)
   end
 end
